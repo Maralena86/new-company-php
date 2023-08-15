@@ -907,6 +907,7 @@ video {
   --tw-ring-offset-color: #1f2937;
 }
 
+
 @media (min-width: 640px) {
   .sm\:static {
     position: static;

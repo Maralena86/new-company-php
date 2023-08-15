@@ -1,3 +1,6 @@
+<?php
+$url_base="http://localhost:8888/site-2023/";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,10 +8,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../../styles.css">
     <title>My new company</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="h-screen">
     <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
@@ -42,9 +47,9 @@
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">System</a>
-                            <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Employers</a>
-                            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Positions</a>
-                            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Users</a>
+                            <a href="<?php echo $url_base;?>/sections/employers" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Employers</a>
+                            <a href="<?php echo $url_base;?>/sections/positions" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Positions</a>
+                            <a href="<?php echo $url_base;?>/sections/users" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Users</a>
                             <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Log out</a>
                         </div>
                     </div>
@@ -65,4 +70,5 @@
             </div>
         </div>
     </nav>
-    <main>
+    <main >
+        

@@ -2,7 +2,6 @@
 include("../../db.php");
 
 //DELETE: Erase a position
-
 if (isset($_GET["txtID"])) {
     $txtID = (isset($_GET["txtID"])) ? $_GET["txtID"] : "";
     $request = $connexion->prepare("DELETE FROM `Position` WHERE id = :id");
@@ -11,10 +10,10 @@ if (isset($_GET["txtID"])) {
 }
 
 //READ: equest for the position's list
-
 $request = $connexion->prepare("SELECT * from `Position`");
 $request->execute();
 $list_positions = $request->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <?php include("../../templates/header.php") ?>

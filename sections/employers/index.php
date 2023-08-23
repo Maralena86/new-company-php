@@ -3,7 +3,7 @@
 include("../../db.php");
 
 //Request to the Employer's table 
-$request = $connexion->prepare("SELECT * from `Employer`");
+$request = $connexion->prepare("SELECT *, (SELECT position_name FROM `Position` WHERE Position.id = Employer.id limit 1) as position FROM `Employer`");
 //Request execution
 $request->execute();
 //Get the list of all employers
@@ -70,7 +70,7 @@ $list_employers = $request->fetchAll(PDO::FETCH_ASSOC);
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
                                         <div class="text-lg text-center">
-                                            <?php echo $employer["id_position"] ?> 
+                                            <?php echo $employer["position"] ?> 
                                         </div></div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">

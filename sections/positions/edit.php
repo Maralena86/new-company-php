@@ -1,5 +1,6 @@
 <?php include("../../db.php");
-//UPDATE position
+
+//Get position's values
 if (isset($_GET["txtID"])) {
     $txtID = (isset($_GET["txtID"])) ? $_GET["txtID"] : "";
     $request = $connexion->prepare("SELECT * FROM `Position` WHERE id = :id");
@@ -8,6 +9,19 @@ if (isset($_GET["txtID"])) {
     $postion = $request->fetch(PDO::FETCH_LAZY);
     $position_id = $postion["id"];
     $position_name = $postion["position_name"];
+}
+
+//UPDATE Position's value
+if ($_POST) {
+    $new_position = (isset($_POST["position_name"]) ? $_POST["position_name"] : "");
+    $request = $connexion->prepare("UPDATE `Position` SET
+    position_name = :position_name
+    WHERE id = :id
+    ");
+    $request->bindParam(":position_name", $new_position);
+    $request->bindParam(":id", $txtID);
+    $request->execute();
+    header("Location:index.php");
 }
 ?>
 
@@ -28,7 +42,7 @@ if (isset($_GET["txtID"])) {
                     <input type="text" id="position_name" value="<?php echo $position_name; ?>" name="position_name" class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-sky-50 dark:border-indigo-900 dark:placeholder-gray-400 dark:text-gray dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                 </div>
             </div>
-            <button type="submit" class="text-white bg-gradient-to-r from-violet-900 to-violet-700 rounded hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  hover:bg-green-700 focus:ring-blue-800">Add register</button>
+            <button type="submit" class="text-white bg-gradient-to-r from-violet-900 to-violet-700 rounded hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  hover:bg-green-700 focus:ring-blue-800">Apply changes</button>
             <a href="index.php" class="text-white bg-gradient-to-r from-red-900 to-red-800 rounded hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center  hover:bg-blue-700 focus:ring-blue-800">Annulate</a>
         </form>
     </div>

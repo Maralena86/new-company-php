@@ -1,14 +1,13 @@
 <?php include("../../db.php");
 
 //CREATE a new Position
-
 if ($_POST) {
     $new_position = (isset($_POST["position_name"]) ? $_POST["position_name"] : "");
     $request = $connexion->prepare("INSERT INTO `Position`(id, position_name) VALUES (null,:position_name) ");
     $request->bindParam("position_name", $new_position);
     $request->execute();
-    print_r($_POST);
 }
+
 ?>
 
 <?php include("../../templates/header.php") ?>

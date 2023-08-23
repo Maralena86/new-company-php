@@ -1,5 +1,16 @@
 <?php
 include("../../db.php");
+
+//DELETE User
+if (isset($_GET["txtID"])) {
+    print_r($_GET["txtID"]);
+    $txtID = (isset($_GET["txtID"])) ? $_GET["txtID"] : "";
+    $request = $connexion->prepare("DELETE FROM `User`WHERE id = :id ");
+    $request->bindParam(":id", $txtID);
+    $request->execute();
+}
+
+//READ User
 $request = $connexion->prepare("SELECT * from `User`");
 $request->execute();
 $list_users = $request->fetchAll(PDO::FETCH_ASSOC);
@@ -64,9 +75,9 @@ $list_users = $request->fetchAll(PDO::FETCH_ASSOC);
                                             <?php echo $user["email"] ?>
                                         </div>
                                     </td>
-                                    
+
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-lg text-center"><a href="create.php" class="bg-gradient-to-r bg-gradient-to-r from-sky-600 to-cyan-700 rounded text-white py-2 px-4">Edit</a> | <a href="create.php" class="bg-gradient-to-r from-pink-900 to-pink-700 rounded text-white py-2 px-4">Delete</a></div>
+                                        <div class="text-lg text-center"><a href="edit.php?txtID=<?php echo $user["id"]; ?>" class="bg-gradient-to-r bg-gradient-to-r from-sky-600 to-cyan-700 rounded text-white py-2 px-4">Edit</a> | <a href="index.php?txtID=<?php echo $user["id"]; ?>" class="bg-gradient-to-r from-pink-900 to-pink-700 rounded text-white py-2 px-4">Delete</a></div>
                                     </td>
                                 </tr>
                             <?php } ?>
